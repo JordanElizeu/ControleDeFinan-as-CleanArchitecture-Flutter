@@ -3,6 +3,6 @@ import 'package:dartz/dartz.dart';
 
 abstract class SignInUseCase {
   Future<Either<Exception, SignInEntity>> signIn({
-    required SignInEntity signInModel,
+    required SignInEntity signInEntity,
   });
 }
