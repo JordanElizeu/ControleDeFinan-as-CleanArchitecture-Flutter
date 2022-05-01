@@ -17,7 +17,7 @@ class MoneyTransactionRemoteDataSourceImp
   Future<Either<Exception, TransactionEntity>> moneyDeposit(
       {required TransactionEntity moneyTransactionModel}) async {
     try {
-      collectionReference
+      await collectionReference
           .doc(auth.currentUser!.uid)
           .collection('Finances')
           .doc('Transactions')
@@ -37,7 +37,7 @@ class MoneyTransactionRemoteDataSourceImp
   Future<Either<Exception, TransactionEntity>> moneyWithDraw(
       {required TransactionEntity moneyTransactionModel}) async {
     try {
-      collectionReference
+      await collectionReference
           .doc(auth.currentUser!.uid)
           .collection('Finances')
           .doc('Transactions')
@@ -50,39 +50,6 @@ class MoneyTransactionRemoteDataSourceImp
       return Right(moneyTransactionModel);
     } catch (e) {
       return Left(Exception('Erro: $e'));
-    }
-  }
-
-  @override
-  Future<Either<Exception, List<TransactionEntity>>> getFindByName(
-      {required String title}) async {
-    try {
-      final List<TransactionModel> transactionModel = [];
-      final resultDeposit = await collectionReference
-          .doc(auth.currentUser!.uid)
-          .collection('Finances')
-          .doc('Transactions')
-          .collection('Deposit')
-          .orderBy('title')
-          .orderBy(title)
-          .get();
-      for (var element in resultDeposit.docs) {
-        transactionModel.add(TransactionModel.fromMap(element.data()));
-      }
-      final resultWithdraw = await collectionReference
-          .doc(auth.currentUser!.uid)
-          .collection('Finances')
-          .doc('Transactions')
-          .collection('Withdraw')
-          .orderBy('title')
-          .orderBy(title)
-          .get();
-      for (var element in resultWithdraw.docs) {
-        transactionModel.add(TransactionModel.fromMap(element.data()));
-      }
-      return Right(transactionModel);
-    } catch (e) {
-      return Left(Exception('Aconteceu um erro.'));
     }
   }
 

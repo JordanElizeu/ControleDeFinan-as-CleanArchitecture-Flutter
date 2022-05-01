@@ -2,7 +2,7 @@ import 'package:controle_financeiro/features/login/domain/entities/register_acco
 import 'package:dartz/dartz.dart';
 
 abstract class RegisterAccountUseCase {
-  Future<Either<Exception, RegisterAccountEntity>> registerAccount({
+  Future<Either<Exception, RegisterAccountEntity>> call({
     required RegisterAccountEntity registerAccountEntity,
   });
 }
