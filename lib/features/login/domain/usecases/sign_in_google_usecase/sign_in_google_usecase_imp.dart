@@ -8,7 +8,7 @@ class SignInGoogleUseCaseImp implements SignInGoogleUseCase {
   SignInGoogleUseCaseImp(this._loginRepository);
 
   @override
-  Future<Either<Exception, void>> call() {
+  Future<Either<Exception, bool>> call() {
     return _loginRepository.signInGoogle();
   }
 }

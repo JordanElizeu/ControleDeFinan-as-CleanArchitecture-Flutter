@@ -30,7 +30,7 @@ class LoginRepositoryImp implements LoginRepository {
   }
 
   @override
-  Future<Either<Exception, void>> signInGoogle() {
+  Future<Either<Exception, bool>> signInGoogle() {
     return _signInGoogleDataSource.call();
   }
 }

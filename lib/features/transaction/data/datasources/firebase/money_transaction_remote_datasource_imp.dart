@@ -17,7 +17,7 @@ class MoneyTransactionRemoteDataSourceImp
   Future<Either<Exception, TransactionEntity>> moneyDeposit(
       {required TransactionEntity moneyTransactionModel}) async {
     try {
-      collectionReference
+      await collectionReference
           .doc(auth.currentUser!.uid)
           .collection('Finances')
           .doc('Transactions')
@@ -37,7 +37,7 @@ class MoneyTransactionRemoteDataSourceImp
   Future<Either<Exception, TransactionEntity>> moneyWithDraw(
       {required TransactionEntity moneyTransactionModel}) async {
     try {
-      collectionReference
+      await collectionReference
           .doc(auth.currentUser!.uid)
           .collection('Finances')
           .doc('Transactions')

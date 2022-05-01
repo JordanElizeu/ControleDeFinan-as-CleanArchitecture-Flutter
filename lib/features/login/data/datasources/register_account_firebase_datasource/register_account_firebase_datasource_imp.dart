@@ -27,6 +27,7 @@ class RegisterAccountFirebaseDataSourceImp
           .add({
         'email': registerAccountEntity.email,
       });
+      await _saveInformationUserInFirebase(registerAccountEntity);
       return Right(registerAccountEntity);
     } on FirebaseAuthException catch (exception) {
       return Left(Exception(FirebaseCreateUserWithEmailAndPasswordException
@@ -34,5 +35,18 @@ class RegisterAccountFirebaseDataSourceImp
         exceptionMessage: exception,
       )));
     }
+  }
+
+  Future<void> _saveInformationUserInFirebase(
+    RegisterAccountEntity registerAccountEntity,
+  ) async {
+    await collectionReference
+        .doc(_firebaseAuth.currentUser?.uid)
+        .collection('Authentication')
+        .doc('UserInformation')
+        .set({
+      'email': registerAccountEntity.email,
+      'name': registerAccountEntity.name,
+    });
   }
 }

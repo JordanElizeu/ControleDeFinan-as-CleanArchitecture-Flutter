@@ -11,5 +11,5 @@ abstract class LoginRepository {
     required RegisterAccountEntity registerAccountEntity,
   });
 
-  Future<Either<Exception, void>> signInGoogle();
+  Future<Either<Exception, bool>> signInGoogle();
 }
