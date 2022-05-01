@@ -8,8 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class RegisterAccountFirebaseDataSourceImp
     implements RegisterAccountFirebaseDataSource {
   final FirebaseAuth _firebaseAuth;
-  final CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('Account');
+  final collectionReference = FirebaseFirestore.instance.collection('Account');
 
   RegisterAccountFirebaseDataSourceImp(this._firebaseAuth);
 

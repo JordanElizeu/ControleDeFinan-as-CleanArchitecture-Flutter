@@ -26,13 +26,14 @@ class SignInGoogleDataSourceImp implements SignInGoogleDataSource {
         idToken: googleAuth?.idToken,
       );
       await FirebaseAuth.instance.signInWithCredential(credential);
-      return await _saveUserWhenSuccess();
+      return await _saveUserInFirebaseWhenSignInGoogleIsSuccess();
     } catch (exception) {
       return Left(Exception('Erro! Login falhou'));
     }
   }
 
-  Future<Either<Exception, void>> _saveUserWhenSuccess() async {
+  Future<Either<Exception, void>>
+      _saveUserInFirebaseWhenSignInGoogleIsSuccess() async {
     try {
       await collectionReference
           .doc(_firebaseAuth.currentUser?.uid)

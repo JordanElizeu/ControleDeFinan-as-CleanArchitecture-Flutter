@@ -26,7 +26,7 @@ class LoginRepositoryImp implements LoginRepository {
   @override
   Future<Either<Exception, SignInFirebaseEntity>> signInFirebase(
       {required SignInFirebaseEntity signInEntity}) {
-    return _signInFirebaseDataSource.call(signInEntity: signInEntity);
+    return _signInFirebaseDataSource.signInFirebaseWithEmailAndPassword(signInEntity: signInEntity);
   }
 
   @override
