@@ -8,18 +8,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 class RegisterAccountFirebaseDataSourceImp
     implements RegisterAccountFirebaseDataSource {
   final FirebaseAuth _firebaseAuth;
-  final collectionReference = FirebaseFirestore.instance.collection('Account');
+  final FirebaseFirestore _firebaseFirestore;
 
-  RegisterAccountFirebaseDataSourceImp(this._firebaseAuth);
+  RegisterAccountFirebaseDataSourceImp(
+      this._firebaseAuth, this._firebaseFirestore);
 
   @override
-  Future<Either<Exception, RegisterAccountEntity>> call(
-      {required RegisterAccountEntity registerAccountEntity}) async {
+  Future<Either<Exception, RegisterAccountEntity>> call({
+    required RegisterAccountEntity registerAccountEntity,
+  }) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: registerAccountEntity.email,
           password: registerAccountEntity.password);
-      await collectionReference
+      await _firebaseFirestore
+          .collection('Account')
           .doc(_firebaseAuth.currentUser?.uid)
           .collection('Authentication')
           .doc('FirebaseAuthentication')
@@ -40,7 +43,8 @@ class RegisterAccountFirebaseDataSourceImp
   Future<void> _saveInformationUserInFirebase(
     RegisterAccountEntity registerAccountEntity,
   ) async {
-    await collectionReference
+    await _firebaseFirestore
+        .collection('Account')
         .doc(_firebaseAuth.currentUser?.uid)
         .collection('Authentication')
         .doc('UserInformation')

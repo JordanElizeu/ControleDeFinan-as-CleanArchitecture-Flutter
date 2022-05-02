@@ -7,4 +7,6 @@ abstract class TransactionRepository {
   Future<Either<Exception, TransactionEntity>> withDrawMoney(
       {required TransactionEntity moneyTransactionEntity});
   Future<Either<Exception, List<TransactionEntity>>> getTodo();
+  Future<Either<Exception, List<TransactionEntity>>> getAllListWithDraw();
+  Future<Either<Exception, List<TransactionEntity>>> getAllListDeposit();
 }

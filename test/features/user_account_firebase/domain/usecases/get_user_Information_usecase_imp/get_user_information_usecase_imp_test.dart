@@ -1,6 +1,6 @@
-import 'package:controle_financeiro/features/user_account_firebase/domain/entities/user_information_entity.dart';
-import 'package:controle_financeiro/features/user_account_firebase/domain/repositories/user_information_repository.dart';
-import 'package:controle_financeiro/features/user_account_firebase/domain/usecases/get_user_information_usecase/get_user_information_usecase_imp.dart';
+import 'package:controle_financeiro/features/user_account/domain/entities/user_information_entity.dart';
+import 'package:controle_financeiro/features/user_account/domain/repositories/user_information_repository.dart';
+import 'package:controle_financeiro/features/user_account/domain/usecases/get_user_information_usecase/get_user_information_usecase_imp.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

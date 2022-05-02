@@ -1,19 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:controle_financeiro/features/user_account_firebase/data/datasources/firebase/get_user_information_datasource.dart';
-import 'package:controle_financeiro/features/user_account_firebase/data/model/user_information_model.dart';
+import 'package:controle_financeiro/features/user_account/data/datasources/firebase/get_user_information_datasource.dart';
+import 'package:controle_financeiro/features/user_account/data/model/user_information_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class GetUserInformationDataSourceImp implements GetUserInformationDataSource {
-  final collectionReference = FirebaseFirestore.instance.collection('Account');
+  final FirebaseFirestore _firebaseFirestore;
   final FirebaseAuth _firebaseAuth;
 
-  GetUserInformationDataSourceImp(this._firebaseAuth);
+  GetUserInformationDataSourceImp(this._firebaseAuth, this._firebaseFirestore);
 
   @override
   Future<Either<Exception, UserInformationModel>> call() async {
     try {
-      final resultUserInformation = await collectionReference
+      final resultUserInformation = await _firebaseFirestore
+          .collection('Account')
           .doc(_firebaseAuth.currentUser?.uid)
           .collection('Authentication')
           .doc('UserInformation')

@@ -4,11 +4,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class SignInGoogleDataSourceImp implements SignInGoogleDataSource {
+  final FirebaseAuth _firebaseAuth;
+  final GoogleSignIn _googleSignIn;
+
+  SignInGoogleDataSourceImp(this._firebaseAuth, this._googleSignIn);
+
   @override
   Future<Either<Exception, bool>> call() async {
     try {
       // Trigger the authentication flow
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       // Obtain the auth details from the request
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
@@ -17,7 +22,7 @@ class SignInGoogleDataSourceImp implements SignInGoogleDataSource {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      await FirebaseAuth.instance.signInWithCredential(credential);
+      await _firebaseAuth.signInWithCredential(credential);
       return const Right(true);
     } catch (exception) {
       return Left(Exception('Erro! Login falhou'));

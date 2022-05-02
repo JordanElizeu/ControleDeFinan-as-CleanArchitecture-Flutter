@@ -3,29 +3,38 @@ import 'package:controle_financeiro/features/transaction/data/models/transaction
 import 'package:controle_financeiro/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:uuid/uuid.dart';
 import 'money_transaction_remote_datasource.dart';
 
 class MoneyTransactionRemoteDataSourceImp
     implements MoneyTransactionRemoteDataSource {
-  final CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('Account');
-  final FirebaseAuth auth;
-
-  MoneyTransactionRemoteDataSourceImp(this.auth);
+  final FirebaseFirestore _firebaseFirestore;
+  final FirebaseAuth _auth;
+  final Uuid _uuid;
+  // = FirebaseFirestore.instance.collection('Account')
+  MoneyTransactionRemoteDataSourceImp(
+    this._auth,
+    this._uuid,
+    this._firebaseFirestore,
+  );
 
   @override
   Future<Either<Exception, TransactionEntity>> moneyDeposit(
       {required TransactionEntity moneyTransactionModel}) async {
     try {
-      await collectionReference
-          .doc(auth.currentUser!.uid)
+      final generateId = _uuid.v1();
+      await _firebaseFirestore
+          .collection('Account')
+          .doc(_auth.currentUser!.uid)
           .collection('Finances')
-          .doc('Transactions')
+          .doc('Transaction')
           .collection('Deposit')
-          .add({
+          .doc(generateId)
+          .set({
         'title': moneyTransactionModel.title,
         'description': moneyTransactionModel.description,
         'value': moneyTransactionModel.valueMoney,
+        'id': generateId,
       });
       return Right(moneyTransactionModel);
     } catch (e) {
@@ -37,39 +46,35 @@ class MoneyTransactionRemoteDataSourceImp
   Future<Either<Exception, TransactionEntity>> moneyWithDraw(
       {required TransactionEntity moneyTransactionModel}) async {
     try {
-      await collectionReference
-          .doc(auth.currentUser!.uid)
+      final generateId = _uuid.v1();
+      await _firebaseFirestore
+          .collection('Account')
+          .doc(_auth.currentUser!.uid)
           .collection('Finances')
-          .doc('Transactions')
+          .doc('Transaction')
           .collection('Withdraw')
-          .add({
+          .doc(generateId)
+          .set({
         'title': moneyTransactionModel.title,
         'description': moneyTransactionModel.description,
         'value': moneyTransactionModel.valueMoney,
+        'id': generateId,
       });
       return Right(moneyTransactionModel);
     } catch (e) {
-      return Left(Exception('Erro: $e'));
+      return Left(Exception('Erro ao sacar dinheiro'));
     }
   }
 
   @override
-  Future<Either<Exception, List<TransactionEntity>>> getTodo() async {
+  Future<Either<Exception, List<TransactionEntity>>> getAllListDeposit() async {
     try {
       final List<TransactionModel> transactionModel = [];
-      final resultDeposit = await collectionReference
-          .doc(auth.currentUser!.uid)
+      final resultWithdraw = await _firebaseFirestore
+          .collection('Account')
+          .doc(_auth.currentUser!.uid)
           .collection('Finances')
-          .doc('Transactions')
-          .collection('Deposit')
-          .get();
-      for (var element in resultDeposit.docs) {
-        transactionModel.add(TransactionModel.fromMap(element.data()));
-      }
-      final resultWithdraw = await collectionReference
-          .doc(auth.currentUser!.uid)
-          .collection('Finances')
-          .doc('Transactions')
+          .doc('Transaction')
           .collection('Withdraw')
           .get();
       for (var element in resultWithdraw.docs) {
@@ -77,7 +82,58 @@ class MoneyTransactionRemoteDataSourceImp
       }
       return Right(transactionModel);
     } catch (e) {
-      return Left(Exception('Aconteceu um erro.'));
+      return Left(Exception('Erro ao pegar lista de transações'));
+    }
+  }
+
+  @override
+  Future<Either<Exception, List<TransactionEntity>>>
+      getAllListWithDraw() async {
+    try {
+      final List<TransactionModel> transactionModel = [];
+      final resultWithdraw = await _firebaseFirestore
+          .collection('Account')
+          .doc(_auth.currentUser!.uid)
+          .collection('Finances')
+          .doc('Transaction')
+          .collection('Withdraw')
+          .get();
+      for (var element in resultWithdraw.docs) {
+        transactionModel.add(TransactionModel.fromMap(element.data()));
+      }
+      return Right(transactionModel);
+    } catch (e) {
+      return Left(Exception('Erro ao pegar lista de transações'));
+    }
+  }
+
+  @override
+  Future<Either<Exception, List<TransactionEntity>>> getTodo() async {
+    try {
+      final List<TransactionModel> transactionModel = [];
+      final resultDeposit = await _firebaseFirestore
+          .collection('Account')
+          .doc(_auth.currentUser!.uid)
+          .collection('Finances')
+          .doc('Transaction')
+          .collection('Deposit')
+          .get();
+      for (var element in resultDeposit.docs) {
+        transactionModel.add(TransactionModel.fromMap(element.data()));
+      }
+      final resultWithdraw = await _firebaseFirestore
+          .collection('Account')
+          .doc(_auth.currentUser!.uid)
+          .collection('Finances')
+          .doc('Transaction')
+          .collection('Withdraw')
+          .get();
+      for (var element in resultWithdraw.docs) {
+        transactionModel.add(TransactionModel.fromMap(element.data()));
+      }
+      return Right(transactionModel);
+    } catch (e) {
+      return Left(Exception('Erro ao pegar lista de transações'));
     }
   }
 }

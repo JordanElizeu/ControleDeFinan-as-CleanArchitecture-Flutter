@@ -38,4 +38,14 @@ class TransactionRepositoryImp implements TransactionRepository {
   Future<Either<Exception, List<TransactionEntity>>> getTodo() {
     return _moneyTransactionRemoteDataSource.getTodo();
   }
+
+  @override
+  Future<Either<Exception, List<TransactionEntity>>> getAllListDeposit() {
+    return _moneyTransactionRemoteDataSource.getAllListDeposit();
+  }
+
+  @override
+  Future<Either<Exception, List<TransactionEntity>>> getAllListWithDraw() {
+    return _moneyTransactionRemoteDataSource.getAllListWithDraw();
+  }
 }

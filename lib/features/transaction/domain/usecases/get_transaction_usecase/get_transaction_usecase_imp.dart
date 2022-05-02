@@ -10,16 +10,6 @@ class GetTransactionUseCaseImp implements GetTransactionUseCase {
 
   @override
   Future<Either<Exception, List<TransactionEntity>>> call() async {
-    try {
-      late final Either<Exception, List<TransactionEntity>> transactionEntity;
-      final eitherResult = await _depositMoneyRepository.getTodo();
-      eitherResult.fold(
-        (error) => transactionEntity = Left(error),
-        (success) => transactionEntity = Right(success),
-      );
-      return transactionEntity;
-    } catch (e) {
-      return Left(Exception('erro: $e'));
-    }
+    return await _depositMoneyRepository.getTodo();
   }
 }

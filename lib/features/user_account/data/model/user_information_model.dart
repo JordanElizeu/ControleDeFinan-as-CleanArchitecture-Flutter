@@ -1,4 +1,4 @@
-import 'package:controle_financeiro/features/user_account_firebase/domain/entities/user_information_entity.dart';
+import 'package:controle_financeiro/features/user_account/domain/entities/user_information_entity.dart';
 
 class UserInformationModel extends UserInformationEntity {
   UserInformationModel({required String name, required String email})
