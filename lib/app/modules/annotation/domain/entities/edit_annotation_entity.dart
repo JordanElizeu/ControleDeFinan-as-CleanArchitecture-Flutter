@@ -1,7 +1,7 @@
 import 'entities.dart';
 
 class EditAnnotationEntity extends AnnotationEntity {
-  final int id;
+  final String id;
 
   EditAnnotationEntity({
     required String title,

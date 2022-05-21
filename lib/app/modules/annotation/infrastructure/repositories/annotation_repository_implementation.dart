@@ -24,10 +24,10 @@ class AnnotationRepositoryImplementation implements AnnotationRepository {
   }
 
   @override
-  Future<Either<Exception, EditAnnotationEntity>> removeAnnotation(
-      {required EditAnnotationEntity editOrRemoveAnnotationEntity}) {
+  Future<Either<Exception, RemoveAnnotationEntity>> removeAnnotation(
+      {required RemoveAnnotationEntity removeAnnotationEntity}) {
     return _annotationDataSource.removeAnnotation(
-        editOrRemoveAnnotationEntity: editOrRemoveAnnotationEntity);
+        removeAnnotationEntity: removeAnnotationEntity);
   }
 
   @override

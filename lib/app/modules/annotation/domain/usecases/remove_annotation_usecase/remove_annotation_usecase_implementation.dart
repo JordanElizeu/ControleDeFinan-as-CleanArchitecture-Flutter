@@ -10,10 +10,10 @@ class RemoveAnnotationUseCaseImplementation implements RemoveAnnotationUseCase {
   RemoveAnnotationUseCaseImplementation(this._annotationRepository);
 
   @override
-  Future<Either<Exception, EditAnnotationEntity>> call(
-      {required EditAnnotationEntity editOrRemoveAnnotationEntity}) async {
+  Future<Either<Exception, RemoveAnnotationEntity>> call(
+      {required RemoveAnnotationEntity removeAnnotationEntity}) async {
     return await _annotationRepository.removeAnnotation(
-      editOrRemoveAnnotationEntity: editOrRemoveAnnotationEntity,
+      removeAnnotationEntity: removeAnnotationEntity,
     );
   }
 }

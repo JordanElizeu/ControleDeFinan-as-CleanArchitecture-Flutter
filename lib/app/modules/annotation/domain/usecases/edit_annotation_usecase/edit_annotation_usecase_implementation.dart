@@ -14,7 +14,7 @@ class EditAnnotationUseCaseImplementation implements EditAnnotationUseCase {
       {required EditAnnotationEntity editAnnotationEntity}) async {
     if (editAnnotationEntity.description.isNotEmpty &&
         editAnnotationEntity.title.isNotEmpty &&
-        editAnnotationEntity.id >= 0) {
+        editAnnotationEntity.id.isNotEmpty) {
       return await _annotationRepository.editAnnotation(editAnnotationEntity: editAnnotationEntity);
     } else {
       return Left(Exception('Erro ao editar anotação'));

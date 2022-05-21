@@ -6,13 +6,13 @@ import '../domain/entities/transaction_entity.dart';
 import '../infrastructure/datasources/firebase/money_transaction_remote_datasource.dart';
 import '../infrastructure/models/transaction_model.dart';
 
-class MoneyTransactionRemoteDataSourceImplementation
+class MoneyTransactionRemoteDatasourceImplementation
     implements MoneyTransactionRemoteDataSource {
   final FirebaseFirestore _firebaseFirestore;
   final FirebaseAuth _auth;
   final Uuid _uuid;
 
-  MoneyTransactionRemoteDataSourceImplementation(
+  MoneyTransactionRemoteDatasourceImplementation(
     this._auth,
     this._uuid,
     this._firebaseFirestore,

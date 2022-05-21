@@ -7,7 +7,7 @@ abstract class AnnotationDataSource {
       {required AnnotationEntity annotationEntity});
   Future<Either<Exception, EditAnnotationEntity>> editAnnotation(
       {required EditAnnotationEntity editAnnotationEntity});
-  Future<Either<Exception, EditAnnotationEntity>> removeAnnotation(
-      {required EditAnnotationEntity editOrRemoveAnnotationEntity});
+  Future<Either<Exception, RemoveAnnotationEntity>> removeAnnotation(
+      {required RemoveAnnotationEntity removeAnnotationEntity});
   Future<Either<Exception, List<AnnotationEntity>>> getTodo();
 }

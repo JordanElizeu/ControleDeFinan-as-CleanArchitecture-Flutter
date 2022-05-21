@@ -1,9 +1,10 @@
-import 'package:controle_financeiro/app/modules/login/domain/entities/register_account_entity.dart';
-import 'package:controle_financeiro/app/modules/login/domain/repositories/login_repository.dart';
-import 'package:controle_financeiro/app/modules/login/domain/usecases/register_account_firebase_usecase/register_account_firebase_usecase_implementation.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+
+import 'package:controle_financeiro/app/modules/login/domain/repositories/repositories.dart';
+import 'package:controle_financeiro/app/modules/login/domain/usecases/usecases.dart';
+import 'package:controle_financeiro/app/modules/login/domain/entities/entities.dart';
 
 class LoginRepositoryMock extends Mock implements LoginRepository {}
 

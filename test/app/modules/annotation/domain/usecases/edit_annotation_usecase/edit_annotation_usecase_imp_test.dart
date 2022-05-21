@@ -1,9 +1,10 @@
-import 'package:controle_financeiro/app/modules/annotation/domain/entities/edit_annotation_entity.dart';
-import 'package:controle_financeiro/app/modules/annotation/domain/repositories/annotation_repository.dart';
-import 'package:controle_financeiro/app/modules/annotation/domain/usecases/edit_annotation_usecase/edit_annotation_usecase_implementation.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+
+import 'package:controle_financeiro/app/modules/annotation/domain/entities/entities.dart';
+import 'package:controle_financeiro/app/modules/annotation/domain/repositories/repositories.dart';
+import 'package:controle_financeiro/app/modules/annotation/domain/usecases/usecases.dart';
 
 class AnnotationRepositoryMock extends Mock implements AnnotationRepository {}
 
@@ -21,7 +22,7 @@ main() {
     final editAnnotationEntity = EditAnnotationEntity(
       title: '',
       description: 'description',
-      id: 0,
+      id: 'id',
     );
     final result = await editAnnotationUseCaseImp.call(
         editAnnotationEntity: editAnnotationEntity);
@@ -34,7 +35,7 @@ main() {
     final editAnnotationEntity = EditAnnotationEntity(
       title: 'title',
       description: '',
-      id: 0,
+      id: 'id',
     );
     final result = await editAnnotationUseCaseImp.call(
         editAnnotationEntity: editAnnotationEntity);
@@ -47,7 +48,7 @@ main() {
     final editAnnotationEntity = EditAnnotationEntity(
       title: 'title',
       description: 'description',
-      id: -1,
+      id: '',
     );
     final result = await editAnnotationUseCaseImp.call(
         editAnnotationEntity: editAnnotationEntity);
@@ -60,7 +61,7 @@ main() {
     final editAnnotationEntity = EditAnnotationEntity(
       title: 'title',
       description: 'description',
-      id: 0,
+      id: 'id',
     );
     when(() => annotationRepositoryMock.editAnnotation(
             editAnnotationEntity: editAnnotationEntity))

@@ -1,5 +1,5 @@
 class RemoveAnnotationEntity {
-  final int id;
+  final String id;
 
   RemoveAnnotationEntity(this.id);
 }

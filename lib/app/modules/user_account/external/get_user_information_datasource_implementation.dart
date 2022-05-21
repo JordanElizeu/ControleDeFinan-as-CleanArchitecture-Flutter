@@ -6,7 +6,7 @@ import '../infrastructure/datasources/datasources.dart';
 import '../infrastructure/models/models.dart';
 
 class GetUserInformationDataSourceImplementation
-    implements GetUserInformationDataSource {
+    implements GetUserInformationDatasource {
   final FirebaseFirestore _firebaseFirestore;
   final FirebaseAuth _firebaseAuth;
 
@@ -14,7 +14,7 @@ class GetUserInformationDataSourceImplementation
       this._firebaseAuth, this._firebaseFirestore);
 
   @override
-  Future<Either<Exception, UserInformationModel>> call() async {
+  Future<Either<Exception, UserInformationModel>> getUSerInformation() async {
     try {
       final resultUserInformation = await _firebaseFirestore
           .collection('Account')

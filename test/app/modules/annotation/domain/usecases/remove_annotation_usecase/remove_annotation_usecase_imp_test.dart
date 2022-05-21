@@ -1,9 +1,10 @@
-import 'package:controle_financeiro/app/modules/annotation/domain/entities/edit_annotation_entity.dart';
-import 'package:controle_financeiro/app/modules/annotation/domain/repositories/annotation_repository.dart';
-import 'package:controle_financeiro/app/modules/annotation/domain/usecases/remove_annotation_usecase/remove_annotation_usecase_implementation.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+
+import 'package:controle_financeiro/app/modules/annotation/domain/entities/entities.dart';
+import 'package:controle_financeiro/app/modules/annotation/domain/repositories/repositories.dart';
+import 'package:controle_financeiro/app/modules/annotation/domain/usecases/usecases.dart';
 
 class AnnotationRepositoryMock extends Mock implements AnnotationRepository {}
 
@@ -17,23 +18,18 @@ main() {
   });
 
   test('should return a list empty', () async {
-    late final EditAnnotationEntity
-        editOrRemoveAnnotationEntityExpected;
-    final editOrRemoveAnnotationEntity = EditAnnotationEntity(
-      title: 'title',
-      description: 'description',
-      id: 0,
-    );
+    late final RemoveAnnotationEntity removeAnnotationEntityExpected;
+    final removeAnnotationEntity = RemoveAnnotationEntity('');
     when(() => annotationRepositoryMock.removeAnnotation(
-            editOrRemoveAnnotationEntity: editOrRemoveAnnotationEntity))
-        .thenAnswer((_) async => Right(editOrRemoveAnnotationEntity));
+            removeAnnotationEntity: removeAnnotationEntity))
+        .thenAnswer((_) async => Right(removeAnnotationEntity));
     final result = await removeAnnotationUseCaseImp.call(
-      editOrRemoveAnnotationEntity: editOrRemoveAnnotationEntity,
+      removeAnnotationEntity: removeAnnotationEntity,
     );
     result.fold(
       (error) => null,
-      (success) => editOrRemoveAnnotationEntityExpected = success,
+      (success) => removeAnnotationEntityExpected = success,
     );
-    expect(editOrRemoveAnnotationEntityExpected, editOrRemoveAnnotationEntity);
+    expect(removeAnnotationEntityExpected, removeAnnotationEntity);
   });
 }
