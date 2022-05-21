@@ -1,4 +1,4 @@
-import '../../domain/entities/transaction_entity.dart';
+import '../../domain/entities/entities.dart';
 
 class TransactionModel extends TransactionEntity {
   final String titleTransaction;

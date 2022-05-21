@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
-import '../../entities/edit_or_remove_annotation_entity.dart';
+import '../../entities/entities.dart';
 
 abstract class EditAnnotationUseCase {
-  Future<Either<Exception, EditOrRemoveAnnotationEntity>> call(
-      {required EditOrRemoveAnnotationEntity editAnnotationEntity});
+  Future<Either<Exception, EditAnnotationEntity>> call(
+      {required EditAnnotationEntity editAnnotationEntity});
 }

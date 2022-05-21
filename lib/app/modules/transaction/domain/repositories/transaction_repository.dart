@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
-import '../entities/transaction_entity.dart';
+
+import '../entities/entities.dart';
 
 abstract class TransactionRepository {
   Future<Either<Exception, TransactionEntity>> depositMoney(

@@ -1,6 +1,6 @@
-import 'package:controle_financeiro/app/modules/annotation/domain/entities/edit_or_remove_annotation_entity.dart';
+import 'package:controle_financeiro/app/modules/annotation/domain/entities/edit_annotation_entity.dart';
 import 'package:controle_financeiro/app/modules/annotation/domain/repositories/annotation_repository.dart';
-import 'package:controle_financeiro/app/modules/annotation/domain/usecases/edit_annotation_usecase/edit_annotation_usecase_imp.dart';
+import 'package:controle_financeiro/app/modules/annotation/domain/usecases/edit_annotation_usecase/edit_annotation_usecase_implementation.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -9,16 +9,16 @@ class AnnotationRepositoryMock extends Mock implements AnnotationRepository {}
 
 main() {
   late AnnotationRepositoryMock annotationRepositoryMock;
-  late EditAnnotationUseCaseImp editAnnotationUseCaseImp;
+  late EditAnnotationUseCaseImplementation editAnnotationUseCaseImp;
   setUp(() {
     annotationRepositoryMock = AnnotationRepositoryMock();
     editAnnotationUseCaseImp =
-        EditAnnotationUseCaseImp(annotationRepositoryMock);
+        EditAnnotationUseCaseImplementation(annotationRepositoryMock);
   });
 
   test('should return exception because title is empty', () async {
     late final Exception exception;
-    final editAnnotationEntity = EditOrRemoveAnnotationEntity(
+    final editAnnotationEntity = EditAnnotationEntity(
       title: '',
       description: 'description',
       id: 0,
@@ -31,7 +31,7 @@ main() {
 
   test('should return exception because description is empty', () async {
     late final Exception exception;
-    final editAnnotationEntity = EditOrRemoveAnnotationEntity(
+    final editAnnotationEntity = EditAnnotationEntity(
       title: 'title',
       description: '',
       id: 0,
@@ -44,7 +44,7 @@ main() {
 
   test('should return exception because id is negative', () async {
     late final Exception exception;
-    final editAnnotationEntity = EditOrRemoveAnnotationEntity(
+    final editAnnotationEntity = EditAnnotationEntity(
       title: 'title',
       description: 'description',
       id: -1,
@@ -56,8 +56,8 @@ main() {
   });
 
   test('should return EditAnnotationEntity', () async {
-    late final EditOrRemoveAnnotationEntity editAnnotationEntityExpected;
-    final editAnnotationEntity = EditOrRemoveAnnotationEntity(
+    late final EditAnnotationEntity editAnnotationEntityExpected;
+    final editAnnotationEntity = EditAnnotationEntity(
       title: 'title',
       description: 'description',
       id: 0,

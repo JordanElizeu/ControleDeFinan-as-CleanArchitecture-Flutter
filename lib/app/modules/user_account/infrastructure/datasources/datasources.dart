@@ -1,0 +1,1 @@
+export 'firebase/get_user_information_datasource.dart';

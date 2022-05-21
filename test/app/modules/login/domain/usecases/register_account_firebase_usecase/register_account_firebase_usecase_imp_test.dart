@@ -1,6 +1,6 @@
 import 'package:controle_financeiro/app/modules/login/domain/entities/register_account_entity.dart';
 import 'package:controle_financeiro/app/modules/login/domain/repositories/login_repository.dart';
-import 'package:controle_financeiro/app/modules/login/domain/usecases/register_account_firebase_usecase/register_account_firebase_usecase_imp.dart';
+import 'package:controle_financeiro/app/modules/login/domain/usecases/register_account_firebase_usecase/register_account_firebase_usecase_implementation.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -9,10 +9,10 @@ class LoginRepositoryMock extends Mock implements LoginRepository {}
 
 main() {
   late LoginRepositoryMock loginRepositoryMock;
-  late RegisterAccountUseCaseImp registerAccountUseCaseImp;
+  late RegisterAccountUseCaseImplementation registerAccountUseCaseImp;
   setUp(() {
     loginRepositoryMock = LoginRepositoryMock();
-    registerAccountUseCaseImp = RegisterAccountUseCaseImp(loginRepositoryMock);
+    registerAccountUseCaseImp = RegisterAccountUseCaseImplementation(loginRepositoryMock);
   });
   test('should return exception because email is invalid', () async {
     late final Exception exception;

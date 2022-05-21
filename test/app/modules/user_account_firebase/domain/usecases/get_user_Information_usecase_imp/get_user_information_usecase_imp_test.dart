@@ -1,6 +1,6 @@
 import 'package:controle_financeiro/app/modules/user_account/domain/entities/user_information_entity.dart';
 import 'package:controle_financeiro/app/modules/user_account/domain/repositories/user_information_repository.dart';
-import 'package:controle_financeiro/app/modules/user_account/domain/usecases/get_user_information_usecase/get_user_information_usecase_imp.dart';
+import 'package:controle_financeiro/app/modules/user_account/domain/usecases/get_user_information_usecase/get_user_information_usecase_implementation.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -10,11 +10,11 @@ class UserInformationRepositoryMock extends Mock
 
 main() {
   late UserInformationRepository userInformationRepository;
-  late GetUserInformationUseCaseImp getUserInformationUseCaseImp;
+  late GetUserInformationUseCaseImplementation getUserInformationUseCaseImp;
   setUp(() {
     userInformationRepository = UserInformationRepositoryMock();
     getUserInformationUseCaseImp =
-        GetUserInformationUseCaseImp(userInformationRepository);
+        GetUserInformationUseCaseImplementation(userInformationRepository);
   });
   test('should return userInformationEntity with information of user', () async {
     late final UserInformationEntity userInformationEntityExpected;

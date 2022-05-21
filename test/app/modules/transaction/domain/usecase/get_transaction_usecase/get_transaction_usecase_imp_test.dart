@@ -1,6 +1,6 @@
 import 'package:controle_financeiro/app/modules/transaction/domain/entities/transaction_entity.dart';
 import 'package:controle_financeiro/app/modules/transaction/domain/repositories/transaction_repository.dart';
-import 'package:controle_financeiro/app/modules/transaction/domain/usecases/get_transaction_usecase/get_transaction_usecase_imp.dart';
+import 'package:controle_financeiro/app/modules/transaction/domain/usecases/get_transaction_usecase/get_transaction_usecase_implementation.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -10,11 +10,11 @@ class MoneyTransactionRepositoryMock extends Mock
 
 main() {
   late MoneyTransactionRepositoryMock moneyTransactionRepositoryMock;
-  late GetTransactionUseCaseImp getTransactionUseCaseImp;
+  late GetTransactionUseCaseImplementation getTransactionUseCaseImp;
   setUp(() {
     moneyTransactionRepositoryMock = MoneyTransactionRepositoryMock();
     getTransactionUseCaseImp =
-        GetTransactionUseCaseImp(moneyTransactionRepositoryMock);
+        GetTransactionUseCaseImplementation(moneyTransactionRepositoryMock);
   });
 
   test('should return empty list', () async {

@@ -1,0 +1,1 @@
+export 'firebase/money_transaction_remote_datasource.dart';

@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../domain/entities/register_account_entity.dart';
-import '../../../domain/entities/sign_in_firebase_entity.dart';
+import '../../../domain/entities/entities.dart';
 
 abstract class SignInFirebaseDatasource {
   Future<Either<Exception, void>> forgotPasswordWithFirebaseDatasource(

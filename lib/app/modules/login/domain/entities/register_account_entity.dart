@@ -1,4 +1,4 @@
-import '../entities/sign_in_firebase_entity.dart';
+import '../entities/entities.dart';
 
 class RegisterAccountEntity extends SignInFirebaseEntity {
   final String name;

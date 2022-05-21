@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../entities/register_account_entity.dart';
+import '../../entities/entities.dart';
 
 abstract class RegisterAccountUseCase {
   Future<Either<Exception, RegisterAccountEntity>> call({

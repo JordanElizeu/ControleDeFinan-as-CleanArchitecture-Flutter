@@ -1,6 +1,6 @@
 import 'package:controle_financeiro/app/modules/transaction/domain/entities/transaction_entity.dart';
 import 'package:controle_financeiro/app/modules/transaction/domain/repositories/transaction_repository.dart';
-import 'package:controle_financeiro/app/modules/transaction/domain/usecases/withdraw_money_usecase/withdraw_money_usecase_imp.dart';
+import 'package:controle_financeiro/app/modules/transaction/domain/usecases/withdraw_money_usecase/withdraw_money_usecase_implementation.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -10,11 +10,11 @@ class MoneyTransactionRepositoryMock extends Mock
 
 void main() {
   late final MoneyTransactionRepositoryMock moneyTransactionRepositoryMock;
-  late final WithDrawMoneyUseCaseImp withDrawMoneyUseCaseImp;
+  late final WithDrawMoneyUseCaseImplementation withDrawMoneyUseCaseImp;
   setUpAll(() {
     moneyTransactionRepositoryMock = MoneyTransactionRepositoryMock();
     withDrawMoneyUseCaseImp =
-        WithDrawMoneyUseCaseImp(moneyTransactionRepositoryMock);
+        WithDrawMoneyUseCaseImplementation(moneyTransactionRepositoryMock);
   });
 
   test('should return false because value money is <= 0', () async {
