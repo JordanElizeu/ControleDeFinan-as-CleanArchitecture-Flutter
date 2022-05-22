@@ -1,3 +1,12 @@
 {
-  "button_sign_in_google" : "Entrar com google"
+  "button_sign_in_google" : "Entrar com google",
+  "account-exists-error": "Já existe uma conta com esse endereço de e-mail",
+  "invalid-credential-error": "Credencial inválida ou malformada",
+  "invalid-credential-code": "Código de verificação da credencial não é válido",
+  "credential-id-not-valid": "ID de verificação da credencial não é válido",
+  "operation-not-allowed": "Tipo de conta correspondente à credencial não foi habilitado",
+  "user-account-deactivated": "Conta de usuário desativada",
+  "user-not-found": "Conta de usuário não encontrada",
+  "wrong-password": "Conta de usuário com senha incorreta ou inexistente",
+  "network-failure": "Houve uma falha na conexão com a internet"
 }

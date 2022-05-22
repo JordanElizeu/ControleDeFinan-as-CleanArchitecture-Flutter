@@ -1,3 +1,12 @@
 {
-  "button_sign_in_google" : "Sign in with google"
+  "button_sign_in_google" : "Sign in with google",
+  "account-exists-error": "An account with this email address already exists",
+  "invalid-credential-error": "Invalid Credential",
+  "invalid-credential-code": "Credential code isn't valid",
+  "credential-id-not-valid": "Verification ID isn't valid",
+  "operation-not-allowed": "Operation not allowed due to account type",
+  "user-account-deactivated": "User account has been deactivated",
+  "user-not-found": "User account not found",
+  "wrong-password": "Invalid password. Please, try again.",
+  "network-failure": "No internet connection. Check your status and try again."
 }
