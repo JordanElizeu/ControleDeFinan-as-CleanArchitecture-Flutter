@@ -8,5 +8,7 @@
   "user-account-deactivated": "User account has been deactivated",
   "user-not-found": "User account not found",
   "wrong-password": "Invalid password. Please, try again.",
-  "network-failure": "No internet connection. Check your status and try again."
+  "network-failure": "No internet connection. Check your status and try again.",
+  "unknown-error": "An unexpected error occurred",
+  "button_confirm_dialog_text" : "Confirm"
 }

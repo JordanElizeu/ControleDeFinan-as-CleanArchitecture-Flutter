@@ -9,4 +9,6 @@ abstract class ConstantI18n {
   static const userNotFound = "user-not-found";
   static const wrongPassword = "wrong-password";
   static const networkFailure = "network-failure";
+  static const unknownError = "unknown-error";
+  static const buttonConfirmDialogText = "button_confirm_dialog_text";
 }

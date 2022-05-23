@@ -33,8 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             break;
           case InvalidVerificationCodeFailure:
             emit(
-                message: LoginError(
-                    message: ConstantI18n.invalidCredentialCode.i18n()));
+                LoginError(message: ConstantI18n.invalidCredentialCode.i18n()));
             emit(LoginStarting());
             break;
           case InvalidVerificationIdFailure:
@@ -61,6 +60,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           case NetworkRequestFailure:
             emit(LoginError(message: ConstantI18n.networkFailure.i18n()));
             emit(LoginStarting());
+            break;
+          default:
+            emit(LoginError(message: ConstantI18n.unknownError.i18n()));
             break;
         }
       },

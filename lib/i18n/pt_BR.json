@@ -8,5 +8,7 @@
   "user-account-deactivated": "Conta de usuário desativada",
   "user-not-found": "Conta de usuário não encontrada",
   "wrong-password": "Conta de usuário com senha incorreta ou inexistente",
-  "network-failure": "Houve uma falha na conexão com a internet"
+  "network-failure": "Houve uma falha na conexão com a internet",
+  "unknown-error": "Ocorreu um erro inesperado",
+  "button_confirm_dialog_text" : "Confirmar"
 }
